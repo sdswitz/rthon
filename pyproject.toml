@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rprob"
+version = "0.2.0"
+description = "R-style probability functions for Python: Normal, Uniform, Binomial, Poisson, Exponential, and Gamma distributions"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{name = "Your Name", email = "you@example.com"}]
+keywords = ["statistics", "probability", "R", "distributions", "normal", "uniform", "binomial", "poisson", "exponential", "gamma"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Mathematics"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "hypothesis", "ruff", "black", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/yourname/rprob"
+
+# If you want a CLI, expose an entry point:
+[project.scripts]
+rprob = "rprob.__main__:main"

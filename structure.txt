@@ -1,0 +1,18 @@
+rprob/
+├─ README.md
+├─ pyproject.toml
+├─ structure.txt
+├─ testing.ipynb
+├─ src/
+│  └─ rprob/
+│     ├─ __init__.py          # imports all distributions
+│     ├─ __main__.py          # optional CLI
+│     ├─ normal.py            # dnorm, pnorm, qnorm, rnorm
+│     ├─ uniform.py           # dunif, punif, qunif, runif
+│     ├─ binomial.py          # dbinom, pbinom, qbinom, rbinom
+│     ├─ poisson.py           # dpois, ppois, qpois, rpois
+│     ├─ exponential.py       # dexp, pexp, qexp, rexp
+│     └─ gamma.py             # dgamma, pgamma, qgamma, rgamma
+└─ tests/
+   ├─ test_normal.py          # original normal distribution tests
+   └─ test_distributions.py   # comprehensive tests for all 6 distributions
