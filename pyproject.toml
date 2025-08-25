@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "rprob"
-version = "0.2.0"
+name = "rthon"
+version = "0.3.0"
 description = "R-style probability functions for Python: Normal, Uniform, Binomial, Poisson, Exponential, and Gamma distributions"
 readme = "README.md"
 requires-python = ">=3.8"
