@@ -1,4 +1,4 @@
-# rprob
+# rthon
 
 R-style probability functions for Python, providing familiar statistical distribution functions with R-compatible interfaces.
 

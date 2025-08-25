@@ -9,7 +9,7 @@ description = "R-style probability functions for Python: Normal, Uniform, Binomi
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
-authors = [{name = "Your Name", email = "you@example.com"}]
+authors = [{name = "Sam Switz", email = "samuel76@illinois.edu"}]
 keywords = ["statistics", "probability", "R", "distributions", "normal", "uniform", "binomial", "poisson", "exponential", "gamma"]
 classifiers = [
   "Programming Language :: Python :: 3",
