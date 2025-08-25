@@ -35,6 +35,6 @@ pnorm(1.96, lower_tail=False, log=True)
 dnorm([0, 1, 2], mean=1, sd=2)
 ```
 
-<!-- ## License
+## License
 
-MIT License -->
+MIT License
