@@ -37,4 +37,4 @@ dnorm([0, 1, 2], mean=1, sd=2)
 
 ## License
 
-MIT License
+MIT License 
