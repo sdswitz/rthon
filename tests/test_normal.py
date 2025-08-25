@@ -1,5 +1,5 @@
 import math
-from rprob import dnorm, pnorm, qnorm, rnorm
+from rthon import dnorm, pnorm, qnorm, rnorm
 
 def almost(a, b, tol=1e-10): return abs(a-b) < tol or (math.isinf(a) and math.isinf(b))
 

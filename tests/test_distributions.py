@@ -1,6 +1,6 @@
 import math
 import pytest
-from rprob import (
+from rthon import (
     # Normal
     dnorm, pnorm, qnorm, rnorm,
     # Uniform
