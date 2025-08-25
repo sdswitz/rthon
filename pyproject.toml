@@ -22,7 +22,7 @@ classifiers = [
 dev = ["pytest", "hypothesis", "ruff", "black", "build", "twine"]
 
 [project.urls]
-Homepage = "https://github.com/yourname/rprob"
+Homepage = "https://github.com/sdswitz/rthon"
 
 # If you want a CLI, expose an entry point:
 [project.scripts]
