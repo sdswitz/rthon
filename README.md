@@ -13,6 +13,9 @@ Currently supports these probability distributions:
 - **Exponential Distribution**: `dexp`, `pexp`, `qexp`, `rexp`
 - **Gamma Distribution**: `dgamma`, `pgamma`, `qgamma`, `rgamma`
 
+### TODO:
+- Implement the lm() function, which uses the QR decomposition
+
 ## Installation
 
 ```bash
