@@ -1,9 +1,21 @@
-from .normal import dnorm, pnorm, qnorm, rnorm
-from .uniform import dunif, punif, qunif, runif
-from .binomial import dbinom, pbinom, qbinom, rbinom
-from .poisson import dpois, ppois, qpois, rpois
-from .exponential import dexp, pexp, qexp, rexp
-from .gamma import dgamma, pgamma, qgamma, rgamma
+# Import all probability distribution functions
+from .distributions import (
+    # Normal distribution
+    dnorm, pnorm, qnorm, rnorm,
+    # Uniform distribution  
+    dunif, punif, qunif, runif,
+    # Binomial distribution
+    dbinom, pbinom, qbinom, rbinom,
+    # Poisson distribution
+    dpois, ppois, qpois, rpois,
+    # Exponential distribution
+    dexp, pexp, qexp, rexp,
+    # Gamma distribution
+    dgamma, pgamma, qgamma, rgamma
+)
+
+# Import regression functions
+from .regression import lm, LinearModel, Formula
 
 __all__ = [
     # Normal distribution
@@ -17,5 +29,7 @@ __all__ = [
     # Exponential distribution
     "dexp", "pexp", "qexp", "rexp",
     # Gamma distribution
-    "dgamma", "pgamma", "qgamma", "rgamma"
+    "dgamma", "pgamma", "qgamma", "rgamma",
+    # Linear regression
+    "lm", "LinearModel", "Formula"
 ]
