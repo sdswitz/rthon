@@ -152,7 +152,7 @@ class LinearModel:
         lines.append(f"F-statistic: {self.f_statistic:.2f} on {self.df_model} and {self.df_residual} DF")
         lines.append(f"p-value: {self.f_p_value:.4f}")
         
-        return "\\n".join(lines)
+        return "\n".join(lines)
     
     def _format_p_value(self, p_val: float) -> str:
         """Format p-value with significance stars."""

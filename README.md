@@ -14,7 +14,9 @@ Currently supports these probability distributions:
 - **Gamma Distribution**: `dgamma`, `pgamma`, `qgamma`, `rgamma`
 
 ### TODO:
-- Implement the lm() function, which uses the QR decomposition
+- Implement the lm() function, which uses the QR decomposition (WIP)
+    - It does something, but is very wrong. Maybe look into using basic numpy functions
+    - or vibe code some C/C++ functions, starting with very basic building blocks
 
 ## Installation
 

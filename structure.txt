@@ -16,3 +16,5 @@ rprob/
 └─ tests/
    ├─ test_normal.py          # original normal distribution tests
    └─ test_distributions.py   # comprehensive tests for all 6 distributions
+
+Not always updated
