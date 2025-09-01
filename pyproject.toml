@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rthon"
-version = "0.3.0"
+version = "0.4.0"
 description = "R-style probability functions for Python with high-performance C linear regression"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "MIT"}
+license = "MIT"
 dependencies = [
     "numpy>=1.19.0"
 ]
@@ -16,7 +16,6 @@ authors = [{name = "Sam Switz", email = "samuel76@illinois.edu"}]
 keywords = ["statistics", "probability", "R", "distributions", "normal", "uniform", "binomial", "poisson", "exponential", "gamma"]
 classifiers = [
   "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
   "Intended Audience :: Science/Research",
   "Topic :: Scientific/Engineering :: Mathematics"
 ]

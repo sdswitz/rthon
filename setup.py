@@ -26,7 +26,11 @@ regression_c_ext = Extension(
         numpy_include
     ],
     extra_compile_args=['-O3', '-std=c99'],
-    extra_link_args=['-lm']
+    extra_link_args=['-lm'],
+    depends=[
+        'src/rthon/regression/_c_ext/python_lm.h',
+        'src/rthon/regression/_c_ext/matrix.h'
+    ]
 )
 
 # Check if we're in a build environment that can compile C extensions
