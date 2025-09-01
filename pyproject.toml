@@ -1,14 +1,17 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0", "wheel", "numpy"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "rthon"
 version = "0.3.0"
-description = "R-style probability functions for Python: Normal, Uniform, Binomial, Poisson, Exponential, and Gamma distributions"
+description = "R-style probability functions for Python with high-performance C linear regression"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.19.0"
+]
 authors = [{name = "Sam Switz", email = "samuel76@illinois.edu"}]
 keywords = ["statistics", "probability", "R", "distributions", "normal", "uniform", "binomial", "poisson", "exponential", "gamma"]
 classifiers = [
@@ -26,4 +29,10 @@ Homepage = "https://github.com/sdswitz/rthon"
 
 # If you want a CLI, expose an entry point:
 [project.scripts]
-rprob = "rprob.__main__:main"
+rprob = "rthon.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

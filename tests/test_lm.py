@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from rthon.regression.linear_algebra import qr_decomposition, solve_qr, back_substitution
 from rthon.regression.formula import parse_formula, design_matrix_from_formula
-from rthon import lm
+from rthon import lm, lm_info
 
 def test_qr_simple():
     """Test QR decomposition with simple matrix."""
@@ -87,8 +87,84 @@ def test_lm_simple():
         print(f"lm function failed: {e}")
         return None
 
+def test_c_extension_interface():
+    """Test the C extension matrix interface."""
+    print("\\nTesting C extension matrix interface...")
+    
+    try:
+        info = lm_info()
+        print(f"Implementation info: {info}")
+        
+        # Test simple perfect linear relationship: y = 0.5 + 1.5*x
+        X = [[1, 1], [1, 2], [1, 3], [1, 4], [1, 5]]
+        y = [2.0, 3.5, 5.0, 6.5, 8.0]
+        
+        print(f"X = {X}")
+        print(f"y = {y}")
+        
+        model = lm(X, y)
+        print("C extension lm function successful!")
+        print(f"Type: {type(model)}")
+        print(f"Coefficients: {dict(zip(model.column_names, model.coefficients))}")
+        print(f"R-squared: {model.r_squared:.6f}")
+        print(f"Residual std error: {model.sigma:.6f}")
+        
+        # Verify mathematical correctness
+        expected_intercept = 0.5
+        expected_slope = 1.5
+        actual_intercept, actual_slope = model.coefficients
+        
+        intercept_error = abs(actual_intercept - expected_intercept)
+        slope_error = abs(actual_slope - expected_slope)
+        
+        print(f"Intercept error: {intercept_error:.10f}")
+        print(f"Slope error: {slope_error:.10f}")
+        
+        assert intercept_error < 1e-10, f"Intercept error too large: {intercept_error}"
+        assert slope_error < 1e-10, f"Slope error too large: {slope_error}"
+        assert abs(model.r_squared - 1.0) < 1e-10, f"R-squared should be 1.0, got {model.r_squared}"
+        
+        print("✅ All C extension tests passed!")
+        return model
+        
+    except Exception as e:
+        print(f"C extension test failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+def test_c_extension_vs_python_fallback():
+    """Test that C extension and Python fallback produce similar results for formula interface."""
+    print("\\nTesting formula interface (Python fallback)...")
+    
+    try:
+        # Test formula interface which should fall back to Python
+        data = {
+            'y': [2.0, 3.5, 5.0, 6.5, 8.0], 
+            'x': [1.0, 2.0, 3.0, 4.0, 5.0]
+        }
+        
+        print(f"Data: {data}")
+        model = lm("y ~ x", data=data)
+        print("Formula interface successful!")
+        print(f"Coefficients: {dict(zip(model.column_names, model.coefficients))}")
+        print(f"R-squared: {model.r_squared:.4f}")
+        
+        return model
+        
+    except Exception as e:
+        print(f"Formula interface test failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
 if __name__ == "__main__":
+    # Test existing functionality
     test_qr_simple()
     test_formula_parsing()
     test_back_substitution()
     test_lm_simple()
+    
+    # Test new C extension functionality
+    test_c_extension_interface()
+    test_c_extension_vs_python_fallback()

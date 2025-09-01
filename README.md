@@ -21,7 +21,7 @@ Currently supports these probability distributions:
 ## Installation
 
 ```bash
-pip install rprob
+pip install rthon
 ```
 
 ## Quick Start

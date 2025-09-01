@@ -15,7 +15,7 @@ from .distributions import (
 )
 
 # Import regression functions
-from .regression import lm, LinearModel, Formula
+from .regression import lm, lm_info, LinearModel, Formula
 
 __all__ = [
     # Normal distribution
@@ -31,5 +31,5 @@ __all__ = [
     # Gamma distribution
     "dgamma", "pgamma", "qgamma", "rgamma",
     # Linear regression
-    "lm", "LinearModel", "Formula"
+    "lm", "lm_info", "LinearModel", "Formula"
 ]
