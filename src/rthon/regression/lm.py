@@ -5,6 +5,7 @@ Main entry point for linear modeling functionality.
 
 from __future__ import annotations
 from typing import Union, Dict, List, Optional, Any
+import warnings
 
 from .linear_algebra import (
     Matrix, Vector, qr_decomposition, solve_qr, matrix_multiply, 
@@ -21,6 +22,10 @@ def lm(formula: Union[str, Formula, Matrix, Vector],
        na_action: str = "omit") -> LinearModel:
     """
     Fit a linear model using least squares regression.
+    
+    .. deprecated:: 0.5.0
+        Pure Python implementation is deprecated in favor of high-performance C extension.
+        This fallback will be removed in a future version.
     
     This function replicates R's lm() functionality with multiple input formats:
     
@@ -51,6 +56,14 @@ def lm(formula: Union[str, Formula, Matrix, Vector],
         # Alternative matrix format
         model = lm(X, y)
     """
+    
+    # Issue deprecation warning
+    warnings.warn(
+        "Pure Python lm() implementation is deprecated and will be removed in v0.5.0. "
+        "Use C extension for better performance (automatic when available).",
+        DeprecationWarning,
+        stacklevel=2
+    )
     
     # Parse inputs and create design matrix
     X, y_vec, column_names, formula_obj = _parse_inputs(formula, data, y)

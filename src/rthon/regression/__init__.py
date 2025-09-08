@@ -73,17 +73,18 @@ try:
         }
     
 except ImportError:
-    # Fall back to Python implementation
+    # Fall back to Python implementation (DEPRECATED - will be removed in v0.5.0)
     from .lm import lm, summary_lm, predict_lm, residuals_lm, fitted_lm
     _using_c_implementation = False
     
     def lm_info():
         """Get information about the linear regression implementation."""
         return {
-            "implementation": "Python (fallback)", 
+            "implementation": "Python (fallback - DEPRECATED)", 
             "module": "rthon.regression.lm",
             "available": False,
-            "note": "C extension not available - using slower Python implementation"
+            "note": "C extension not available - using slower Python implementation",
+            "deprecation": "Python implementation will be removed in v0.5.0"
         }
 
 __all__ = [
