@@ -51,9 +51,51 @@ try:
             
             return model
         else:
-            # Fall back to Python implementation for formula interface
-            from .lm import lm as python_lm
-            return python_lm(X, y=y, **kwargs)
+            # Handle formula interface by converting to matrix interface
+            from .formula import parse_formula, design_matrix_from_formula, Formula
+            
+            if isinstance(X, (str, Formula)):
+                # Formula interface
+                if 'data' not in kwargs or kwargs['data'] is None:
+                    raise ValueError("Data dictionary required when using formula interface")
+                
+                data = kwargs['data']
+                if isinstance(data, dict):
+                    # Parse formula and create design matrix
+                    if isinstance(X, str):
+                        formula_obj = parse_formula(X)
+                    else:
+                        formula_obj = X
+                    
+                    # Convert formula to matrix representation
+                    X_matrix, y_vector, column_names = design_matrix_from_formula(formula_obj, data)
+                    
+                    # Use C implementation with converted data
+                    c_result = c_lm(X_matrix, y_vector)
+                    
+                    # Create LinearModel object
+                    model = LinearModel(
+                        coefficients=c_result.coefficients,
+                        residuals=c_result.residuals,
+                        fitted_values=c_result.fitted_values,
+                        y=y_vector,
+                        X=X_matrix,
+                        column_names=column_names,
+                        formula=formula_obj,
+                        X_t_X_inv=None
+                    )
+                    
+                    # Override properties with C extension computed values
+                    model.r_squared = c_result.r_squared
+                    model.adj_r_squared = adjusted_r_squared(y_vector, c_result.fitted_values, len(c_result.coefficients))
+                    model.sigma = c_result.residual_std_error
+                    
+                    return model
+                else:
+                    raise ValueError("Data must be a dictionary when using formulas")
+            else:
+                # Unsupported interface
+                raise ValueError("Unsupported input format for C extension")
     
     # Import other functions from Python implementation
     from .lm import summary_lm, predict_lm, residuals_lm, fitted_lm
