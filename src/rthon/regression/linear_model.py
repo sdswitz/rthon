@@ -7,7 +7,27 @@ from __future__ import annotations
 import math
 from typing import List, Dict, Any, Optional, Tuple, Union
 
-from .linear_algebra import Matrix, Vector, matrix_multiply, transpose, matrix_vector_multiply
+# Type aliases for better readability
+Matrix = List[List[float]]
+Vector = List[float]
+
+def matrix_vector_multiply(matrix: Matrix, vector: Vector) -> Vector:
+    """Multiply matrix by vector."""
+    if not matrix or not vector:
+        return []
+    
+    n_rows = len(matrix)
+    n_cols = len(matrix[0]) if matrix else 0
+    
+    if n_cols != len(vector):
+        raise ValueError(f"Matrix columns ({n_cols}) must match vector length ({len(vector)})")
+    
+    result = []
+    for i in range(n_rows):
+        dot_product = sum(matrix[i][j] * vector[j] for j in range(n_cols))
+        result.append(dot_product)
+    
+    return result
 from .statistics import (
     mean, r_squared, adjusted_r_squared, residual_standard_error,
     standard_errors, t_statistics, p_values_t, confidence_intervals,

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rthon"
-version = "0.4.1"
+version = "0.4.2"
 description = "R-style probability functions for Python with high-performance C linear regression"
 readme = "README.md"
 requires-python = ">=3.8"

@@ -6,7 +6,9 @@ Handles expressions like "y ~ x1 + x2 + I(x1^2) + x1:x2"
 from __future__ import annotations
 import re
 from typing import List, Dict, Any, Tuple, Set, Union, Optional
-from .linear_algebra import Matrix, Vector
+# Type aliases for better readability
+Matrix = List[List[float]]
+Vector = List[float]
 
 class Term:
     """Represents a term in a formula (like x1, I(x1^2), x1:x2)."""
