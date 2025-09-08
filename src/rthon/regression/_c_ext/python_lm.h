@@ -10,6 +10,8 @@ typedef struct {
     double *fitted_values;
     double *residuals;
     double *standard_errors;
+    double *t_values;
+    double *p_values;
     double r_squared;
     double residual_std_error;
     double f_statistic;
